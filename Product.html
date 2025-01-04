@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopEase - Products</title>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+  
+  <style>
+    .navbar {
+      z-index: 1000; 
+    }
+
+    .cart-btn {
+      position: fixed;
+      top: 80px; 
+      right: 20px;
+      z-index: 1050; 
+    }
+
+    .card {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+ 
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">ShopEase</a> 
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="products.html">Products</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Our Products</h2>
+    <div class="row">
+      <!-- Product 1 -->
+      <div class="col-md-4">
+        <div class="card">
+          <img src="https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/Surface-Laptop-Go-3_OG_Twitter-image?scl=1" class="card-img-top" alt="Product 1">
+          <div class="card-body">
+            <h5 class="card-title">Laptop</h5>
+            <p class="card-text">Price: $1200</p>
+            <button class="btn btn-primary add-to-cart" data-name="Laptop" data-price="1200">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      <!-- Product 2 -->
+      <div class="col-md-4">
+        <div class="card">
+          <img src="https://images.samsung.com/is/image/samsung/assets/in/explore/brand/5-best-android-mobile-phones-2022-in-india/banner-mobile-720x761-080422.jpg?$720_N_JPG$" class="card-img-top" alt="Product 2">
+          <div class="card-body">
+            <h5 class="card-title">Mobile</h5>
+            <p class="card-text">Price: $600</p>
+            <button class="btn btn-primary add-to-cart" data-name="Mobile" data-price="600">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      <!-- Product 3 -->
+      <div class="col-md-4">
+        <div class="card">
+          <img src="https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1730270851/Croma%20Assets/Communication/Speakers%20and%20Media%20Players/Images/302520_0_i6w3cz.png" class="card-img-top" alt="Product 3">
+          <div class="card-body">
+            <h5 class="card-title">Speaker</h5>
+            <p class="card-text">Price: $300</p>
+            <button class="btn btn-primary add-to-cart" data-name="Speaker" data-price="300">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <button class="btn btn-success cart-btn" data-bs-toggle="modal" data-bs-target="#cartModal">View Cart</button>
+
+  
+  <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cartModalLabel">Your Cart</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul id="cartItems" class="list-group">
+            
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <a href="checkout.html" class="btn btn-primary">Checkout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      const cart = [];
+
+      $('.add-to-cart').click(function() {
+        const name = $(this).data('name');
+        const price = $(this).data('price');
+        cart.push({ name, price });
+
+        const itemHTML = `<li class="list-group-item d-flex justify-content-between align-items-center">
+          ${name}
+          <span>$${price}</span>
+        </li>`;
+        $('#cartItems').append(itemHTML);
+      });
+    });
+  </script>
+</body>
+</html>
