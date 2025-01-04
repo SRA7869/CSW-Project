@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment - ShopEasy</title>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .thank-you-message {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 class="text-center">Payment</h2>
+    <p class="lead text-center">Select your preferred payment method and confirm your order.</p>
+
+   
+    <form id="paymentForm">
+      <div class="form-group">
+        <label for="paymentMethod">Payment Method</label>
+        <select id="paymentMethod" class="form-control" required>
+          <option value="">-- Select Payment Method --</option>
+          <option value="card">Credit/Debit Card</option>
+          <option value="upi">UPI</option>
+          <option value="cod">Cash on Delivery</option>
+        </select>
+      </div>
+
+      
+      <div id="cardDetails" class="d-none">
+        <div class="form-group">
+          <label for="cardNumber">Card Number</label>
+          <input type="text" id="cardNumber" class="form-control" placeholder="Enter Card Number">
+        </div>
+        <div class="form-group">
+          <label for="cardExpiry">Expiry Date</label>
+          <input type="text" id="cardExpiry" class="form-control" placeholder="MM/YY">
+        </div>
+        <div class="form-group">
+          <label for="cardCvv">CVV</label>
+          <input type="password" id="cardCvv" class="form-control" placeholder="Enter CVV">
+        </div>
+      </div>
+
+    
+      <div id="upiDetails" class="d-none">
+        <div class="form-group">
+          <label for="upiId">UPI ID</label>
+          <input type="text" id="upiId" class="form-control" placeholder="Enter UPI ID">
+        </div>
+      </div>
+
+      
+      <div id="codMessage" class="d-none">
+        <p class="text-info">You have selected Cash on Delivery. Please have the payment ready upon delivery.</p>
+      </div>
+
+      <button type="submit" class="btn btn-success btn-block mt-4">Pay Now</button>
+    </form>
+
+    
+    <div class="thank-you-message text-center mt-4">
+      <h3>Order Placed Successfully!</h3>
+      <p>Thank you for shopping with <strong>ShopEasy</strong>.</p>
+      <a href="index.html" class="btn btn-primary">Back to Home</a>
+    </div>
+  </div>
+
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      
+      $('#paymentMethod').change(function() {
+        const selectedMethod = $(this).val();
+        $('#cardDetails, #upiDetails, #codMessage').addClass('d-none');
+        if (selectedMethod === 'card') {
+          $('#cardDetails').removeClass('d-none');
+        } else if (selectedMethod === 'upi') {
+          $('#upiDetails').removeClass('d-none');
+        } else if (selectedMethod === 'cod') {
+          $('#codMessage').removeClass('d-none');
+        }
+      });
+
+      
+      $('#paymentForm').submit(function(event) {
+        event.preventDefault();
+        $('.thank-you-message').fadeIn();
+        $(this).hide();
+      });
+    });
+  </script>
+</body>
+</html>
